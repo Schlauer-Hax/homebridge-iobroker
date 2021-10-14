@@ -1,16 +1,15 @@
 {
-  "private": true,
-  "displayName": "Plugin Name",
-  "name": "homebridge-plugin-name",
-  "version": "1.0.0",
-  "description": "A short description about what your plugin does.",
+  "displayName": "homebridge-iobroker",
+  "name": "homebridge-iobroker2",
+  "version": "1.0.2",
+  "description": "Provides Iobroker States as Devices",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/USERNAME/GITHUB_PROJECT_NAME.git"
+    "url": "git://github.com/Schlauer-Hax/homebridge-iobroker.git"
   },
   "bugs": {
-    "url": "https://github.com/USERNAME/GITHUB_PROJECT_NAME/issues"
+    "url": "https://github.com/Schlauer-Hax/homebridge-iobroker/issues"
   },
   "engines": {
     "node": ">=12.13.0",

@@ -1,15 +1,29 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
+  "pluginAlias": "IoBroker",
   "pluginType": "platform",
   "singular": true,
   "schema": {
-    "type": "object",
-    "properties": {
-      "name": {
-        "title": "Name",
-        "type": "string",
-        "required": true,
-        "default": "Example Dynamic Platform"
+    "url": {
+      "title": "Url of simpleapi instance",
+      "type": "string"
+    },
+    "port": {
+      "title": "Port of simpleapi instance",
+      "type": "number"
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "title": "States",
+        "type": "object",
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "onstate": {
+          "title": "State for On Value",
+          "type": "string"
+        }
       }
     }
   }
