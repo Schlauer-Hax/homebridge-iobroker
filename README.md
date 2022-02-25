@@ -9,7 +9,7 @@ Lightbulb
    [the instructions](https://github.com/homebridge/homebridge/wiki).
 1. Install this plugin using
    [Homebridge Config UI X](https://github.com/oznu/homebridge-config-ui-x), or
-   by running `npm install -g homebridge-shelly.`
+   by running `npm install -g homebridge-iobroker2`.
 1. Install and configure the
    [simple-api](https://github.com/ioBroker/ioBroker.simple-api) on your running
    iobroker server.

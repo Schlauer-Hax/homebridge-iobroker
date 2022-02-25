@@ -12,17 +12,30 @@
       "type": "number"
     },
     "devices": {
+      "title": "List of all devices",
       "type": "array",
       "items": {
-        "title": "States",
+        "title": "Device",
         "type": "object",
-        "name": {
-          "title": "Name",
-          "type": "string"
-        },
-        "onstate": {
-          "title": "State for On Value",
-          "type": "string"
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "required": true
+          },
+          "onstate": {
+            "title": "State for On Value",
+            "type": "string",
+            "required": true
+          },
+          "colortemp": {
+            "title": "Color Temperature",
+            "type": "string"
+          },
+          "brightness": {
+            "title": "Brightness",
+            "type": "string"
+          }
         }
       }
     }

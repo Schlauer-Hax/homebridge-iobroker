@@ -27,6 +27,7 @@ export class IoBrokerPlatform implements DynamicPlatformPlugin {
     this.accessories.push(accessory);
   }
 
+  trys = 0;
   discoverDevices() {
     this.getData('help').then(() => {
       this.log.info('Reached IoBroker. Adding Devices...');
@@ -45,13 +46,24 @@ export class IoBrokerPlatform implements DynamicPlatformPlugin {
           this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
         }
       });
+    }, (err) => {
+      this.log.error('Error connecting to IoBroker:', err.message);
+      if (this.trys < 5) {
+        this.trys++;
+        this.log.error('Retrying in 5 seconds... Try:', this.trys);
+        setTimeout(() => {
+          this.discoverDevices();
+        }, 5000);
+      } else {
+        this.log.error('Could not connect to IoBroker. Aborting.');
+      }
     });
   }
 
   getData(command, args?): Promise<string> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const url = 'http://' + this.config.url + ':' + this.config.port + '/' + command + (args ? '?'+args : '');
-      this.log.debug(url);
+      this.log.debug('Calling url:', url);
       get(url, (res) => {
         let body = '';
         res.on('readable', () => {
@@ -60,6 +72,8 @@ export class IoBrokerPlatform implements DynamicPlatformPlugin {
         res.on('end', () => {
           resolve(body);
         });
+      }).on('error', (err) => {
+        reject(err);
       });
     });
   }
