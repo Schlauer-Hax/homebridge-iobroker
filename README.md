@@ -17,7 +17,7 @@ Lightbulb
 
 ## Configuration
 
-In most cases, simply adding this plugin to the homebridge config.json will be
+In most cases, simply adding this plugin to the homebridge config.json and changing the devices states will be
 enough:
 
 ```json
@@ -30,7 +30,9 @@ enough:
     "devices": [
         {
             "name": "FirstState",
-            "onstate": "0_userdata.0.firststate"
+            "onstate": "0_userdata.0.firststate",
+            "colortemp": "0_userdata.0.colortemp",
+            "brightness": "0_userdata.0.bri"
         },
         {
             "name": "SecondState",
