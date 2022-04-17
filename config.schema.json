@@ -28,6 +28,10 @@
             "type": "string",
             "required": true
           },
+          "switch": {
+            "title": "Shows the device as switch",
+            "type": "boolean"
+          },
           "colortemp": {
             "title": "Color Temperature",
             "type": "string"

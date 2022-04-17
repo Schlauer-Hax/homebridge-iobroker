@@ -17,9 +17,11 @@ export class IoBrokerLightAccessory {
       .setCharacteristic(this.platform.Characteristic.Model, 'IoBroker')
       .setCharacteristic(this.platform.Characteristic.SerialNumber, 'IoBroker');
 
-    // get the LightBulb service if it exists, otherwise create a new LightBulb service
+    // get the service if it exists, otherwise create a new service
     // you can create multiple services for each accessory
-    this.service = this.accessory.getService(this.platform.Service.Lightbulb) || this.accessory.addService(this.platform.Service.Lightbulb);
+    const servicestype = this.config.switch ? this.platform.Service.Switch : this.platform.Service.Lightbulb;
+    this.service = this.accessory.getService(servicestype) || this.accessory.addService(servicestype);
+
 
     // set the service name, this is what is displayed as the default name on the Home app
     this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.displayName);
@@ -92,7 +94,7 @@ export class IoBrokerLightAccessory {
 
   async get(state: string, args?): Promise<CharacteristicValue> {
     return new Promise((resolve) => {
-      this.platform.getData('get/'+state, args).then((data) => {
+      this.platform.getData('get/' + state.replaceAll('#', '%23'), args).then((data) => {
         resolve(JSON.parse(data).val);
       });
     });
@@ -100,7 +102,7 @@ export class IoBrokerLightAccessory {
 
   async set(state: string, value: CharacteristicValue) {
     return new Promise((resolve) => {
-      this.platform.getData('set/'+state, 'value='+value).then((data) => {
+      this.platform.getData('set/' + state.replaceAll('#', '%23'), 'value=' + value).then((data) => {
         resolve(JSON.parse(data).val);
       });
     });

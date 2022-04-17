@@ -70,6 +70,7 @@ export class IoBrokerPlatform implements DynamicPlatformPlugin {
           body += res.read();
         });
         res.on('end', () => {
+          this.log.debug(body);
           resolve(body);
         });
       }).on('error', (err) => {
