@@ -37,6 +37,11 @@ enough:
         {
             "name": "SecondState",
             "onstate": "0_userdata.0.secondstate"
+        },
+        {
+            "name": "Switch",
+            "onstate": "0_userdata.0.testswitch",
+            "switch": true
         }
     ]
 }
